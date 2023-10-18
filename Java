@@ -1,0 +1,54 @@
+import java.util.Scanner;
+
+public class ConstructID {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        // Prompt the user for full name
+        System.out.print("Enter your full name: ");
+        String fullName = input.nextLine();
+
+        // Prompt the user for street address
+        System.out.print("Enter your street address: ");
+        String address = input.nextLine();
+
+        // Extract initials from the full name
+        String initials = extractInitials(fullName);
+
+        // Extract numeric part from the address
+        String numericPart = extractNumericPart(address);
+
+        // Construct the ID
+        String id = initials + numericPart;
+
+        // Print the constructed ID
+        System.out.println("Your ID is: " + id);
+    }
+
+    // Helper method to extract initials from a full name
+    public static String extractInitials(String fullName) {
+        String[] parts = fullName.split(" ");
+        StringBuilder initials = new StringBuilder();
+
+        for (String part : parts) {
+            if (!part.isEmpty()) {
+                initials.append(part.charAt(0));
+            }
+        }
+
+        return initials.toString().toUpperCase();
+    }
+
+    // Helper method to extract numeric part from a street address
+    public static String extractNumericPart(String address) {
+        StringBuilder numericPart = new StringBuilder();
+
+        for (char c : address.toCharArray()) {
+            if (Character.isDigit(c)) {
+                numericPart.append(c);
+            }
+        }
+
+        return numericPart.toString();
+    }
+}
